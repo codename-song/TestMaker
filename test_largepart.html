@@ -6,5 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>부위명 감별 시험</title>
   </head>
-  <body></body>
+  <body>
+    <button name="back_lobby" onclick="location.href='lobby.html'">
+      로비로 돌아가기
+    </button>
+    <!-- 문제 형태 form, 해당 형태를 총 20개 출력하도록 함(내부 내용만 랜덤으로 바꿔서) -->
+    <div class="question_column">
+      <span class="question_column__number">1</span>
+      <img
+        class=""
+        src="https://t1.daumcdn.net/cfile/blog/26404843552C030715?original"
+      />
+      <form class="question_column__answerform">
+        <span class="question_column__answerform__radio"
+          >소
+          <input type="radio" name="meattype" value="cow" checked />
+        </span>
+        <span class="question_column__answerform__radio"
+          >돼지
+          <input type="radio" name="meattype" value="pig" />
+        </span>
+        <span
+          >부위명
+          <input type="text" name="meatname" />
+        </span>
+      </form>
+    </div>
+    <button name="go_answer" onclick="location.href='answer_largepart.html'">
+      체점하기
+    </button>
+  </body>
 </html>
