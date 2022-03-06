@@ -1,0 +1,28 @@
+.lobby-title,
+.lobby-list {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+.lobby-title {
+  text-align: center;
+  line-height: 30px;
+}
+.lobby-list {
+  flex-direction: column;
+  align-items: center;
+}
+
+.lobby-title span {
+  font-size: 20px;
+}
+.lobby-button {
+  margin-bottom: 15px;
+  font-size: 15px;
+  width: 200px;
+  height: 50px;
+  border: 0px;
+  background-color: antiquewhite;
+  border-radius: 15px;
+  box-shadow: 5px 5px 10px -6px rgb(170, 168, 168);
+}

@@ -1,0 +1,76 @@
+.question-part {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  flex-direction: column;
+  align-items: center;
+}
+.go-answer,
+.back-lobby {
+  margin-top: 20px;
+  font-size: 15px;
+  width: 130px;
+  height: 30px;
+  border: 0px;
+  background-color: antiquewhite;
+  border-radius: 15px;
+  box-shadow: 5px 5px 10px -6px rgb(170, 168, 168);
+}
+
+#question-field {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.question-column {
+  margin-left: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  width: 400px;
+  border: 3px solid gray;
+}
+.question-column__number {
+  background-color: rgb(83, 27, 27);
+  display: flex;
+  width: 30px;
+  height: 30px;
+  font-size: 25px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border: 2px solid black;
+  margin-bottom: 20px;
+}
+.question-column__image {
+  width: 400px;
+  margin-bottom: 10px;
+}
+
+.question-column__answerform {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.question-column__answerform__radio {
+  margin-bottom: 20px;
+}
+.question-column__answerform__radio span {
+  font-size: 20px;
+  padding-right: 20px;
+}
+.question-column__answerform__partname,
+.question-column__answerform__partname input {
+  font-size: 20px;
+}
+.bottom-info {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  flex-direction: column;
+  align-items: center;
+}

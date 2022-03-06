@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="kr">
   <head>
+    <link rel="stylesheet" href="css/style.css" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,9 +11,12 @@
     <script src="datamanger.js"></script>
   </head>
   <body>
-    <button name="back-lobby" onclick="location.href='lobby.html'">
-      로비로 돌아가기
-    </button>
+    <div class="question-part">
+      <span>부위별 감별(총 20문제)</span>
+      <button class="back-lobby" onclick="location.href='lobby.html'">
+        로비로 돌아가기
+      </button>
+    </div>
 
     <div id="question-field">
       <!-- 문제 형태 form, 해당 형태를 총 20개 출력하도록 함(내부 내용만 랜덤으로 바꿔서) -->
@@ -20,15 +24,17 @@
         <span class="question-column__number"></span>
         <img class="question-column__image" src="" />
         <form class="question-column__answerform">
-          <span class="question-column__answerform__radio"
-            >소
-            <input type="radio" name="meattype" value="cow" checked />
-          </span>
-          <span class="question-column__answerform__radio"
-            >돼지
-            <input type="radio" name="meattype" value="pig" />
-          </span>
-          <span
+          <div class="question-column__answerform__radio">
+            <span
+              >소
+              <input type="radio" name="meattype" value="cow" checked />
+            </span>
+            <span
+              >돼지
+              <input type="radio" name="meattype" value="pig" />
+            </span>
+          </div>
+          <span class="question-column__answerform__partname"
             >부위명
             <input type="text" name="meatname" />
           </span>
@@ -36,8 +42,10 @@
       </div>
     </div>
 
-    <button name="go-answer" onclick="location.href='answer_largepart.html'">
-      체점하기
-    </button>
+    <div class="bottom-info">
+      <button class="go-answer" onclick="location.href='answer_largepart.html'">
+        체점하기
+      </button>
+    </div>
   </body>
 </html>

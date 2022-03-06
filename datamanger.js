@@ -76,17 +76,6 @@ oReq.send();
 
 function setQuestion() {
   if (!isAllLoaed) return;
-  console.log("wait for data load");
-  if (pig_questionList[0] != null) {
-    document.getElementsByClassName("question-column__image")[0].src =
-      pig_questionList[0].frontImg;
-    console.log(
-      "try to change src : " +
-        document.getElementsByClassName("question-column__image")[0].src
-    );
-  } else {
-    console.log("it is null");
-  }
 
   // 총 20개의 문제 출제
   // 돼지에서 10개 랜덤추출
@@ -112,15 +101,18 @@ function setQuestion() {
   }
 }
 
+// Html에 문제 출제하기
 function createQuestionElement(tempData) {
   // create question html divs
   var qdiv = document.createElement("div");
   qdiv.innerHTML =
     document.getElementsByClassName("question-column")[0].innerHTML;
 
+  qdiv.className = "question-column";
   qdiv.getElementsByClassName("question-column__image")[0].src =
     tempData.frontImg;
   qdiv.getElementsByClassName("question-column__number")[0].innerHTML =
     tempData.currentNum;
+
   document.getElementById("question-field").appendChild(qdiv);
 }
