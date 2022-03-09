@@ -6,6 +6,7 @@ let question = {
   imgList2: "",
   imgList3: "",
   currentNum: 0,
+  isRight: false,
 };
 
 var pig_questionList = new Array();
@@ -17,61 +18,63 @@ var testQuestion_List = new Array();
 var tempData = question;
 
 //window.onload = function loadAllData() {
+function initializeData() {
+  var url = "/datafiles/questionDB.xlsx";
+  var oReq = new XMLHttpRequest();
+  oReq.open("GET", url, true);
+  oReq.responseType = "arraybuffer";
 
-var url = "/datafiles/questionDB.xlsx";
-var oReq = new XMLHttpRequest();
-oReq.open("GET", url, true);
-oReq.responseType = "arraybuffer";
+  let loadedData = new Array();
 
-let loadedData = new Array();
+  oReq.onload = function (e) {
+    pig_questionList = [];
+    cow_questionList = [];
+    var arraybuffer = oReq.response;
 
-oReq.onload = function (e) {
-  pig_questionList = [];
-  cow_questionList = [];
-  var arraybuffer = oReq.response;
+    /* convert data to binary string */
+    var data = new Uint8Array(arraybuffer);
+    var arr = new Array();
+    for (var i = 0; i != data.length; ++i)
+      arr[i] = String.fromCharCode(data[i]);
+    var bstr = arr.join("");
 
-  /* convert data to binary string */
-  var data = new Uint8Array(arraybuffer);
-  var arr = new Array();
-  for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
-  var bstr = arr.join("");
+    /* Call XLSX */
+    var workbook = XLSX.read(bstr, { type: "binary" });
 
-  /* Call XLSX */
-  var workbook = XLSX.read(bstr, { type: "binary" });
+    /* DO SOMETHING WITH workbook HERE */
+    var first_sheet_name = workbook.SheetNames[0];
+    /* Get worksheet */
+    var worksheet = workbook.Sheets[first_sheet_name];
+    console.log(XLSX.utils.sheet_to_json(worksheet, { raw: true }));
+    loadedData = XLSX.utils.sheet_to_json(worksheet, { raw: true });
 
-  /* DO SOMETHING WITH workbook HERE */
-  var first_sheet_name = workbook.SheetNames[0];
-  /* Get worksheet */
-  var worksheet = workbook.Sheets[first_sheet_name];
-  console.log(XLSX.utils.sheet_to_json(worksheet, { raw: true }));
-  loadedData = XLSX.utils.sheet_to_json(worksheet, { raw: true });
-
-  if (!isAllLoaed) {
-    for (var i = 0; i < loadedData.length; i++) {
-      if (loadedData[i].type == "돼지") {
-        pig_questionList.push(loadedData[i]);
-        pig_questionList[i].frontImg = pig_questionList[i].imgList1;
-      } else if (loadedData[i].type == "소") {
-        cow_questionList.push(loadedData[i]);
-        cow_questionList[cow_questionList.length - 1].frontImg =
-          cow_questionList[cow_questionList.length - 1].imgList1;
-      } else {
-        console.log("wWTFFFFFF");
-      }
-      if (i >= loadedData.length - 1) {
-        isAllLoaed = true;
-        console.log("all data have been loaded");
-        console.log(pig_questionList);
-        console.log(cow_questionList);
+    if (!isAllLoaed) {
+      for (var i = 0; i < loadedData.length; i++) {
+        if (loadedData[i].type == "pig") {
+          pig_questionList.push(loadedData[i]);
+          pig_questionList[i].frontImg = pig_questionList[i].imgList1;
+          pig_questionList[i].isRight = false;
+        } else if (loadedData[i].type == "cow") {
+          cow_questionList.push(loadedData[i]);
+          cow_questionList[cow_questionList.length - 1].frontImg =
+            cow_questionList[cow_questionList.length - 1].imgList1;
+          cow_questionList[cow_questionList.length - 1].isRight = false;
+        } else {
+          console.log("wWTFFFFFF");
+        }
+        if (i >= loadedData.length - 1) {
+          isAllLoaed = true;
+        }
       }
     }
-  }
 
-  if (isAllLoaed) {
-    setQuestion();
-  }
-};
-oReq.send();
+    if (isAllLoaed) {
+      setQuestion();
+    }
+  };
+  oReq.send();
+}
+
 //}
 
 function setQuestion() {
@@ -115,4 +118,62 @@ function createQuestionElement(tempData) {
     tempData.currentNum;
 
   document.getElementById("question-field").appendChild(qdiv);
+}
+
+function runAnswerCheck() {
+  for (i = 0; i < 20; i++) {
+    compareAnswer(
+      testQuestion_List[i],
+      document.getElementsByClassName("question-column")[i + 1]
+    );
+  }
+  // 정답체크 끝난 후 데이터 전달준비
+  localStorage.setItem("largeAnswers", JSON.stringify(testQuestion_List));
+}
+
+function compareAnswer(answerData, tempData) {
+  const meatNodeList = document.getElementsByName("meattype");
+
+  //정답체크
+  if (
+    answerData.name ==
+    tempData
+      .getElementsByClassName("question-column__answerform")[0]
+      .getElementsByClassName("question-column__answerform__partname")[0]
+      .getElementsByClassName("question-column__answerform__partname__input")[0]
+      .value
+  ) {
+    // 이름을 알맞게 적은 경우
+    // 고기 타입체크
+    meatNodeList.forEach((node) => {
+      if (node.checked) {
+        if (node.value == answerData.type) {
+          //고기 종류까지 정답인 경우
+          answerData.isRight = true;
+          console.log("Right One!!!!!");
+        }
+      }
+    });
+  } else {
+    //틀림
+    console.log(
+      answerData.currentNum +
+        " : wrong... " +
+        tempData
+          .getElementsByClassName("question-column__answerform")[0]
+          .getElementsByClassName("question-column__answerform__partname")[0]
+          .getElementsByClassName(
+            "question-column__answerform__partname__input"
+          )[0].value +
+        ", A : " +
+        answerData.name
+    );
+  }
+}
+
+//
+function initAnswerPage() {
+  var testResults = JSON.parse(localStorage.getItem("largeAnswers"));
+
+  console.log(testResults);
 }

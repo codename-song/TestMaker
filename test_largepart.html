@@ -36,14 +36,23 @@
           </div>
           <span class="question-column__answerform__partname"
             >부위명
-            <input type="text" name="meatname" />
+            <input
+              class="question-column__answerform__partname__input"
+              type="text"
+              placeholder="답을 정확히 입력하세요"
+            />
           </span>
         </form>
       </div>
     </div>
-
+    <script>
+      initializeData();
+    </script>
     <div class="bottom-info">
-      <button class="go-answer" onclick="location.href='answer_largepart.html'">
+      <button
+        class="go-answer"
+        onclick="runAnswerCheck() ; location.href='answer_largepart.html'"
+      >
         체점하기
       </button>
     </div>
