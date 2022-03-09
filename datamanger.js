@@ -131,8 +131,7 @@ function createAnswerElement(tempData) {
     tempData.currentNum;
 
   if (tempData.isRight) {
-    adiv.getElementsByClassName("answer__column__isanswer")[0].innerHTML =
-      "정답";
+    adiv.getElementsByClassName("answer__column__isanswer")[0].innerHTML = "O";
     adiv.getElementsByClassName("answer__column__explanation")[0].innerHTML =
       "";
   } else {
@@ -142,10 +141,15 @@ function createAnswerElement(tempData) {
     } else {
       temptype = "소";
     }
-    adiv.getElementsByClassName("answer__column__isanswer")[0].innerHTML =
-      "오답";
+    adiv.getElementsByClassName("answer__column__isanswer")[0].innerHTML = "X";
+    adiv.getElementsByClassName("answer__column__isanswer")[0].style.color =
+      "red";
     adiv.getElementsByClassName("answer__column__explanation")[0].innerHTML =
-      "종류 : " + temptype + ",  부위명 : " + tempData.name;
+      "종류 : " +
+      temptype +
+      "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+      " 부위명 : " +
+      tempData.name;
   }
 
   document.getElementById("answer-field").appendChild(adiv);
@@ -204,9 +208,16 @@ function compareAnswer(answerData, tempData) {
 
 //
 function initAnswerPage() {
+  var answerCount = 0;
   var testResults = JSON.parse(localStorage.getItem("largeAnswers"));
   for (i = 0; i < testResults.length; i++) {
+    if (testResults[i].isRight) {
+      answerCount++;
+    }
+
     createAnswerElement(testResults[i]);
   }
+  document.getElementsByClassName("answer-title")[0].innerHTML =
+    answerCount + "/20";
   console.log(testResults);
 }

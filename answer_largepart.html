@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="kr">
   <head>
+    <link rel="stylesheet" href="css/style.css" />
     <script src="datamanger.js"></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -8,23 +9,22 @@
     <title>부위명 감별 결과</title>
   </head>
   <body>
-    <div class="answer-title">
-      <span>14 / 20</span>
-    </div>
+    <div class="answer-title">14 / 20</div>
     <div id="answer-field">
       <div class="answer__column" style="display: none">
         <span class="answer__column__number">1</span>
-        <span class="answer__column__isanswer">정답</span>
+        <span class="answer__column__isanswer">x</span>
         <span class="answer__column__explanation"
           >종류 : 소 , 부위명 : 안심</span
         >
       </div>
+
+      <button class="back-lobby" onclick="location.href='lobby.html'">
+        로비로 돌아가기
+      </button>
     </div>
     <script>
       initAnswerPage();
     </script>
-    <button name="back_lobby" onclick="location.href='lobby.html'">
-      로비로 돌아가기
-    </button>
   </body>
 </html>
