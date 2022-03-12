@@ -5,27 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>세절육 감별</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+    <script src="datamanger.js"></script>
   </head>
   <body>
     <div class="answer-title">1 / 4</div>
     <div id="answer-field">
-      <div class="answer__column">
+      <div class="answer__column" style="display: none">
         <span class="answer__column__number">1</span>
-        <span class="answer__column__isanswer">x</span>
-        <span class="answer__column__explanation">명칭 : 안심</span>
-      </div>
-      <div class="answer__column">
-        <span class="answer__column__number">2</span>
-        <span class="answer__column__isanswer">x</span>
-        <span class="answer__column__explanation">명칭 : 안심</span>
-      </div>
-      <div class="answer__column">
-        <span class="answer__column__number">3</span>
-        <span class="answer__column__isanswer">x</span>
-        <span class="answer__column__explanation">명칭 : 안심</span>
-      </div>
-      <div class="answer__column">
-        <span class="answer__column__number">4</span>
         <span class="answer__column__isanswer">x</span>
         <span class="answer__column__explanation">명칭 : 안심</span>
       </div>
@@ -33,5 +21,8 @@
     <button name="back_lobby" onclick="location.href='lobby.html'">
       로비로 돌아가기
     </button>
+    <script>
+      initAnswerPage(smallQuestCount);
+    </script>
   </body>
 </html>

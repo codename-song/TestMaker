@@ -1,3 +1,13 @@
+// 키값 미리 배정
+const db_largePart = "largepart";
+const db_smallPart = "smallpart";
+
+const pig = "돼지";
+const cow = "소";
+
+const largeQuestCount = 20;
+const smallQuestCount = 4;
+
 let question = {
   type: "",
   name: "",
@@ -18,7 +28,7 @@ var testQuestion_List = new Array();
 var tempData = question;
 
 //window.onload = function loadAllData() {
-function initializeData() {
+function initializeData(loadtype) {
   var url = "/datafiles/questionDB.xlsx";
   var oReq = new XMLHttpRequest();
   oReq.open("GET", url, true);
@@ -42,7 +52,8 @@ function initializeData() {
     var workbook = XLSX.read(bstr, { type: "binary" });
 
     /* DO SOMETHING WITH workbook HERE */
-    var first_sheet_name = workbook.SheetNames[0];
+    //var first_sheet_name = workbook.SheetNames[0];
+    var first_sheet_name = loadtype;
     /* Get worksheet */
     var worksheet = workbook.Sheets[first_sheet_name];
     console.log(XLSX.utils.sheet_to_json(worksheet, { raw: true }));
@@ -69,7 +80,17 @@ function initializeData() {
     }
 
     if (isAllLoaed) {
-      setQuestion();
+      switch (loadtype) {
+        case db_largePart:
+          setQuestion(largeQuestCount);
+          break;
+        case db_smallPart:
+          setQuestion(smallQuestCount);
+          break;
+        default:
+          console.log("enable to set question list");
+          break;
+      }
     }
   };
   oReq.send();
@@ -77,7 +98,7 @@ function initializeData() {
 
 //}
 
-function setQuestion() {
+function setQuestion(countType) {
   if (!isAllLoaed) return;
 
   // 총 20개의 문제 출제
@@ -89,7 +110,7 @@ function setQuestion() {
   pig_questionList.sort(() => Math.random() - 0.5);
   cow_questionList.sort(() => Math.random() - 0.5);
 
-  for (i = 0; i < 10; i++) {
+  for (i = 0; i < countType / 2; i++) {
     testQuestion_List.push(pig_questionList[i]);
     testQuestion_List.push(cow_questionList[i]);
   }
@@ -155,18 +176,19 @@ function createAnswerElement(tempData) {
   document.getElementById("answer-field").appendChild(adiv);
 }
 
-function runAnswerCheck() {
-  for (i = 0; i < 20; i++) {
+function runAnswerCheck(questionType, countType) {
+  for (i = 0; i < countType; i++) {
     compareAnswer(
+      questionType,
       testQuestion_List[i],
       document.getElementsByClassName("question-column")[i + 1]
     );
   }
   // 정답체크 끝난 후 데이터 전달준비
-  localStorage.setItem("largeAnswers", JSON.stringify(testQuestion_List));
+  localStorage.setItem("Answers", JSON.stringify(testQuestion_List));
 }
 
-function compareAnswer(answerData, tempData) {
+function compareAnswer(quesiontType, answerData, tempData) {
   const meatNodeList = document.getElementsByName("meattype");
 
   //정답체크
@@ -180,15 +202,25 @@ function compareAnswer(answerData, tempData) {
   ) {
     // 이름을 알맞게 적은 경우
     // 고기 타입체크
-    meatNodeList.forEach((node) => {
-      if (node.checked) {
-        if (node.value == answerData.type) {
-          //고기 종류까지 정답인 경우
-          answerData.isRight = true;
-          console.log("Right One!!!!!");
-        }
-      }
-    });
+    switch (quesiontType) {
+      case db_largePart:
+        meatNodeList.forEach((node) => {
+          if (node.checked) {
+            if (node.value == answerData.type) {
+              //고기 종류까지 정답인 경우
+              answerData.isRight = true;
+              console.log("Right One!!!!!");
+            }
+          }
+        });
+        break;
+      case db_smallPart:
+        answerData.isRight = true;
+        break;
+      default:
+        console.log("cant identify the quesiton type");
+        break;
+    }
   } else {
     //틀림
     console.log(
@@ -207,9 +239,9 @@ function compareAnswer(answerData, tempData) {
 }
 
 //
-function initAnswerPage() {
+function initAnswerPage(questionCount) {
   var answerCount = 0;
-  var testResults = JSON.parse(localStorage.getItem("largeAnswers"));
+  var testResults = JSON.parse(localStorage.getItem("Answers"));
   for (i = 0; i < testResults.length; i++) {
     if (testResults[i].isRight) {
       answerCount++;
@@ -218,6 +250,6 @@ function initAnswerPage() {
     createAnswerElement(testResults[i]);
   }
   document.getElementsByClassName("answer-title")[0].innerHTML =
-    answerCount + "/20";
+    answerCount + " / " + questionCount;
   console.log(testResults);
 }

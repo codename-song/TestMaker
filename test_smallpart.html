@@ -5,54 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>세절육 감별 시험</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+    <script src="datamanger.js"></script>
   </head>
   <body id="test-smallpart">
     <button name="back-lobby" onclick="location.href='lobby.html'">
       로비로 돌아가기
     </button>
-    <div class="question-field">
-      <div class="question-imagetagle">
-        <div class="question-example">
-          <span class="question-example__number">1</span>
-          <img class="question-example__image" src="" />
-        </div>
-        <div class="question-example">
-          <span class="question-example__number">2</span>
-          <img class="question-example__image" src="" />
-        </div>
-        <div class="question-example">
-          <span class="question-example__number">3</span>
-          <img class="question-example__image" src="" />
-        </div>
-        <div class="question-example">
-          <span class="question-example__number">4</span>
-          <img class="question-example__image" src="" />
-        </div>
-      </div>
-      <div class="answer-field">
-        <span class="answer-field__explain"
-          >각 번호에 알맞는 세절육 명칭을 적으세요</span
-        >
-        <div class="answer-field__answer">
-          <span>1</span>
-          <input type="text" />
-        </div>
-        <div class="answer-field__answer">
-          <span>2</span>
-          <input type="text" />
-        </div>
-        <div class="answer-field__answer">
-          <span>3</span>
-          <input type="text" />
-        </div>
-        <div class="answer-field__answer">
-          <span>4</span>
-          <input type="text" />
-        </div>
+    <div id="question-field">
+      <div class="question-column" style="display: none">
+        <span class="question-column__number"></span>
+        <img class="question-column__image" src="" />
+
+        <form class="question-column__answerform">
+          <span class="question-column__answerform__partname"
+            >부위명
+            <input
+              class="question-column__answerform__partname__input"
+              type="text"
+              placeholder="답을 정확히 입력하세요"
+            />
+          </span>
+        </form>
       </div>
     </div>
-    <button name="go-answer" onclick="location.href='answer_smallpart.html'">
+    <button
+      name="go-answer"
+      onclick="runAnswerCheck(db_smallPart, smallQuestCount) ; 
+      location.href='answer_smallpart.html'"
+    >
       체점하기
     </button>
+
+    <script>
+      initializeData(db_smallPart);
+    </script>
   </body>
 </html>
