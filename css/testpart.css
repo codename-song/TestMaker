@@ -1,20 +1,53 @@
-.question-part {
-  margin-top: 40px;
+body {
+  padding-top: 75px;
+  background-color: rgb(246, 242, 250);
+  width: auto;
+}
+
+.question-hearder {
+  position: fixed;
+  top: 0;
+  /* width: 100% */
+  left: 0;
+  right: 0;
+  background-color: rgb(54, 31, 77);
+  height: 60px;
   display: flex;
-  justify-content: center;
-  margin-bottom: 40px;
-  flex-direction: column;
   align-items: center;
 }
-.go-answer,
+
+.question-hearder span {
+  color: white;
+  font-weight: bolder;
+  font-size: 1.5em;
+  position: absolute;
+  left: 20px;
+}
+.question-hearder button {
+  position: absolute;
+  right: 10px;
+  top: 7px;
+}
+
 .back-lobby {
-  margin-top: 20px;
-  font-size: 15px;
-  width: 130px;
-  height: 30px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  margin-bottom: 15px;
+  font-size: 2em;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+}
+
+.go-answer {
+  color: rgb(110, 36, 110);
+  font-weight: bold;
+  margin-top: 15px;
+  font-size: 2em;
+  width: 200px;
+  height: 50px;
   border: 0px;
-  background-color: antiquewhite;
-  border-radius: 15px;
+  background-color: white;
+  border: 3px solid purple;
   box-shadow: 5px 5px 10px -6px rgb(170, 168, 168);
 }
 
@@ -25,14 +58,12 @@
 }
 
 .question-column {
-  margin-left: 20px;
-  margin-bottom: 20px;
+  margin: 5px;
   padding: 20px;
-  width: 400px;
-  border: 3px solid gray;
+  width: 80%;
+  background-color: white;
 }
 .question-column__number {
-  background-color: rgb(83, 27, 27);
   display: flex;
   width: 30px;
   height: 30px;
@@ -40,12 +71,14 @@
   border-radius: 50px;
   justify-content: center;
   align-items: center;
-  color: white;
-  border: 2px solid black;
+  color: purple;
+  font-weight: bolder;
   margin-bottom: 20px;
 }
 .question-column__image {
-  width: 400px;
+  align-items: center;
+  max-width: 100%;
+  max-height: 600px;
   margin-bottom: 10px;
 }
 
@@ -59,12 +92,16 @@
   margin-bottom: 20px;
 }
 .question-column__answerform__radio span {
-  font-size: 20px;
+  font-size: 1em;
+  font-weight: bolder;
+  color: rgb(77, 26, 126);
   padding-right: 20px;
 }
 .question-column__answerform__partname,
 .question-column__answerform__partname input {
-  font-size: 20px;
+  font-size: 1em;
+  font-weight: bolder;
+  color: rgb(77, 26, 126);
 }
 .bottom-info {
   display: flex;

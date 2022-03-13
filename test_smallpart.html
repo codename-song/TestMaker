@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="kr">
   <head>
+    <link rel="stylesheet" href="css/style.css" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,10 +10,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
     <script src="datamanger.js"></script>
   </head>
-  <body id="test-smallpart">
-    <button name="back-lobby" onclick="location.href='lobby.html'">
-      로비로 돌아가기
-    </button>
+  <body>
+    <div class="question-hearder">
+      <span>세절육 감별(총 4문제)</span>
+      <button class="back-lobby" onclick="location.href='lobby.html'"><</button>
+    </div>
     <div id="question-field">
       <div class="question-column" style="display: none">
         <span class="question-column__number"></span>
@@ -30,14 +32,15 @@
         </form>
       </div>
     </div>
-    <button
-      name="go-answer"
-      onclick="runAnswerCheck(db_smallPart, smallQuestCount) ; 
+    <div class="bottom-info">
+      <button
+        class="go-answer"
+        onclick="runAnswerCheck(db_smallPart, smallQuestCount) ; 
       location.href='answer_smallpart.html'"
-    >
-      체점하기
-    </button>
-
+      >
+        채점하기
+      </button>
+    </div>
     <script>
       initializeData(db_smallPart);
     </script>

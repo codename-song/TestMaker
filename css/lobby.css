@@ -7,6 +7,8 @@
 .lobby-title {
   text-align: center;
   line-height: 30px;
+  color: purple;
+  font-weight: bolder;
 }
 .lobby-list {
   flex-direction: column;
@@ -17,12 +19,19 @@
   font-size: 20px;
 }
 .lobby-button {
+  color: rgb(110, 36, 110);
+  font-weight: bold;
   margin-bottom: 15px;
   font-size: 15px;
   width: 200px;
   height: 50px;
   border: 0px;
-  background-color: antiquewhite;
-  border-radius: 15px;
+  background-color: white;
+  border: 3px solid purple;
   box-shadow: 5px 5px 10px -6px rgb(170, 168, 168);
+}
+
+.lobby-button:hover {
+  background-color: rgb(88, 25, 88);
+  color: white;
 }

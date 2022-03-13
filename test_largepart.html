@@ -5,17 +5,19 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"
+    />
     <title>부위명 감별 시험</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
     <script src="datamanger.js"></script>
   </head>
   <body>
-    <div class="question-part">
+    <div class="question-hearder">
       <span>부위별 감별(총 20문제)</span>
-      <button class="back-lobby" onclick="location.href='lobby.html'">
-        로비로 돌아가기
-      </button>
+      <button class="back-lobby" onclick="location.href='lobby.html'"><</button>
     </div>
 
     <div id="question-field">
@@ -53,7 +55,7 @@
         class="go-answer"
         onclick="runAnswerCheck(db_smallPart, largeQuestCount) ; location.href='answer_largepart.html'"
       >
-        체점하기
+        채점하기
       </button>
     </div>
   </body>

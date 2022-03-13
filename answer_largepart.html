@@ -9,7 +9,10 @@
     <title>부위명 감별 결과</title>
   </head>
   <body>
-    <div class="answer-title">14 / 20</div>
+    <div class="answer-header">
+      <span class="answer-header__result"> 점수 : 14/20 </span>
+      <button class="back-lobby" onclick="location.href='lobby.html'"><</button>
+    </div>
     <div id="answer-field">
       <div class="answer__column" style="display: none">
         <span class="answer__column__number">1</span>
@@ -18,10 +21,6 @@
           >종류 : 소 , 부위명 : 안심</span
         >
       </div>
-
-      <button class="back-lobby" onclick="location.href='lobby.html'">
-        로비로 돌아가기
-      </button>
     </div>
     <script>
       initAnswerPage(largeQuestCount);

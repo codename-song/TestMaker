@@ -168,7 +168,7 @@ function createAnswerElement(tempData) {
     adiv.getElementsByClassName("answer__column__explanation")[0].innerHTML =
       "종류 : " +
       temptype +
-      "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+      "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
       " 부위명 : " +
       tempData.name;
   }
@@ -249,7 +249,7 @@ function initAnswerPage(questionCount) {
 
     createAnswerElement(testResults[i]);
   }
-  document.getElementsByClassName("answer-title")[0].innerHTML =
-    answerCount + " / " + questionCount;
+  document.getElementsByClassName("answer-header__result")[0].innerHTML =
+    "점수 : " + answerCount + " / " + questionCount;
   console.log(testResults);
 }

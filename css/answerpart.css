@@ -1,3 +1,14 @@
+.answer-header {
+  position: fixed;
+  top: 0;
+  /* width: 100% */
+  left: 0;
+  right: 0;
+  background-color: rgb(54, 31, 77);
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
 .answer-title {
   margin-top: 40px;
   display: flex;
@@ -8,49 +19,45 @@
   font-size: 50px;
   letter-spacing: 5px;
 }
+.answer-header__result {
+  color: white;
+  font-weight: bolder;
+  font-size: 1.5em;
+  position: absolute;
+  left: 20px;
+}
+.answer-header button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
 
 #answer-field {
   display: flex;
-  align-items: center;
   flex-direction: column;
+  margin-left: 20px;
+  width: auto;
 }
 
 .answer__column {
   margin-bottom: 20px;
-  padding: 20px;
 }
 
 .answer__column__number {
-  font-size: 25px;
-  border-radius: 50px;
-  width: 36px;
-  height: 36px;
+  font-size: 1.5em;
   padding: 8px;
-
-  background: #fff;
-  border: 2px solid #666;
-  color: #666;
+  color: rgb(33, 5, 34);
   text-align: center;
   margin-right: 10px;
 }
 
 .answer__column__isanswer {
-  margin-right: 15px;
+  margin-right: 1em;
   font-size: 25px;
   color: blue;
   font-weight: bolder;
 }
 .answer__column__explanation {
-  font-size: 20px;
-}
-
-.back-lobby {
-  margin-top: 20px;
-  font-size: 15px;
-  width: 130px;
-  height: 30px;
-  border: 0px;
-  background-color: antiquewhite;
-  border-radius: 15px;
-  box-shadow: 5px 5px 10px -6px rgb(170, 168, 168);
+  font-size: 1empx;
+  color: rgb(22, 2, 41);
 }
