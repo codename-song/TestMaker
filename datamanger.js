@@ -29,7 +29,7 @@ var tempData = question;
 
 //window.onload = function loadAllData() {
 function initializeData(loadtype) {
-  var url = "/datafiles/questionDB.xlsx";
+  var url = "./datafiles/questionDB.xlsx";
   var oReq = new XMLHttpRequest();
   oReq.open("GET", url, true);
   oReq.responseType = "arraybuffer";
