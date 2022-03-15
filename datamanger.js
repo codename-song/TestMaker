@@ -60,16 +60,47 @@ function initializeData(loadtype) {
     loadedData = XLSX.utils.sheet_to_json(worksheet, { raw: true });
 
     if (!isAllLoaed) {
+      var randomNumber = Math.floor(Math.random() * 3);
       for (var i = 0; i < loadedData.length; i++) {
         if (loadedData[i].type == "pig") {
           pig_questionList.push(loadedData[i]);
-          pig_questionList[i].frontImg = pig_questionList[i].imgList1;
+          switch (randomNumber) {
+            case 0:
+              pig_questionList[i].frontImg = pig_questionList[i].imgList1;
+              break;
+            case 1:
+              pig_questionList[i].frontImg = pig_questionList[i].imgList2;
+              break;
+            case 2:
+              pig_questionList[i].frontImg = pig_questionList[i].imgList3;
+              break;
+            default:
+              pig_questionList[i].frontImg = pig_questionList[i].imgList1;
+              break;
+          }
           pig_questionList[i].isRight = false;
         } else if (loadedData[i].type == "cow") {
           cow_questionList.push(loadedData[i]);
           cow_questionList[cow_questionList.length - 1].frontImg =
             cow_questionList[cow_questionList.length - 1].imgList1;
-          cow_questionList[cow_questionList.length - 1].isRight = false;
+          switch (randomNumber) {
+            case 0:
+              cow_questionList[cow_questionList.length - 1].frontImg =
+                cow_questionList[cow_questionList.length - 1].imgList1;
+              break;
+            case 1:
+              cow_questionList[cow_questionList.length - 1].frontImg =
+                cow_questionList[cow_questionList.length - 1].imgList2;
+              break;
+            case 2:
+              cow_questionList[cow_questionList.length - 1].frontImg =
+                cow_questionList[cow_questionList.length - 1].imgList2;
+              break;
+            default:
+              cow_questionList[cow_questionList.length - 1].frontImg =
+                cow_questionList[cow_questionList.length - 1].imgList1;
+              break;
+          }
         } else {
           console.log("wWTFFFFFF");
         }
@@ -95,6 +126,8 @@ function initializeData(loadtype) {
   };
   oReq.send();
 }
+
+function pushList(pushListElemnet) {}
 
 //}
 
@@ -133,6 +166,7 @@ function createQuestionElement(tempData) {
     document.getElementsByClassName("question-column")[0].innerHTML;
 
   qdiv.className = "question-column";
+
   qdiv.getElementsByClassName("question-column__image")[0].src =
     tempData.frontImg;
   qdiv.getElementsByClassName("question-column__number")[0].innerHTML =
