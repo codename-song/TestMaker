@@ -152,9 +152,23 @@ function setQuestion(countType) {
 
   console.log(testQuestion_List);
 
-  for (i = 0; i < testQuestion_List.length; i++) {
-    testQuestion_List[i].currentNum = i + 1;
-    createQuestionElement(testQuestion_List[i]);
+  switch (countType) {
+    case largeQuestCount:
+      for (i = 0; i < testQuestion_List.length; i++) {
+        testQuestion_List[i].currentNum = i + 1;
+        createQuestionElement(testQuestion_List[i]);
+      }
+      break;
+    case smallQuestCount:
+      for (i = 0; i < testQuestion_List.length; i++) {
+        testQuestion_List[i].currentNum = i + 1;
+        document.getElementsByClassName("quiz__image")[i].src =
+          testQuestion_List[i].frontImg;
+      }
+      break;
+    default:
+      console.log("enable to find count type");
+      break;
   }
 }
 
@@ -211,13 +225,33 @@ function createAnswerElement(tempData) {
 }
 
 function runAnswerCheck(questionType, countType) {
-  for (i = 0; i < countType; i++) {
-    compareAnswer(
-      questionType,
-      testQuestion_List[i],
-      document.getElementsByClassName("question-column")[i + 1]
-    );
+  switch (questionType) {
+    case db_largePart:
+      for (i = 0; i < countType; i++) {
+        compareAnswer(
+          questionType,
+          testQuestion_List[i],
+          document.getElementsByClassName("question-column")[i + 1]
+        );
+      }
+      break;
+    case db_smallPart:
+      for (i = 0; i < countType; i++) {
+        if (
+          document.getElementsByName("meatname")[i].value ==
+          testQuestion_List[i].name
+        ) {
+          testQuestion_List[i].isRight = true;
+        } else {
+          testQuestion_List[i].isRight = false;
+        }
+      }
+
+      break;
+    default:
+      break;
   }
+
   // 정답체크 끝난 후 데이터 전달준비
   localStorage.setItem("Answers", JSON.stringify(testQuestion_List));
 }
