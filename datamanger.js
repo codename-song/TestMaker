@@ -199,17 +199,29 @@ function createAnswerElement(tempData) {
   adiv.getElementsByClassName("answer__column__number")[0].innerHTML =
     tempData.currentNum;
 
+  var temptype = "none";
+
+  if (tempData.type == "pig") {
+    temptype = "돼지";
+  } else {
+    temptype = "소";
+  }
+
   if (tempData.isRight) {
     adiv.getElementsByClassName("answer__column__isanswer")[0].innerHTML = "O";
     adiv.getElementsByClassName("answer__column__explanation")[0].innerHTML =
       "";
+    adiv.getElementsByClassName("answer__column__image")[0].src =
+      tempData.frontImg;
+    adiv.getElementsByClassName("answer__column__explanation")[0].innerHTML =
+      "종류 : " +
+      temptype +
+      "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +
+      " 부위명 : " +
+      tempData.name;
   } else {
-    var temptype = "none";
-    if (tempData.type == "pig") {
-      temptype = "돼지";
-    } else {
-      temptype = "소";
-    }
+    adiv.getElementsByClassName("answer__column__image")[0].src =
+      tempData.frontImg;
     adiv.getElementsByClassName("answer__column__isanswer")[0].innerHTML = "X";
     adiv.getElementsByClassName("answer__column__isanswer")[0].style.color =
       "red";
